@@ -14,4 +14,8 @@ public class DaoFactory {
 		return factory;
 	}
 
+	public PaisDao getPaisDao() {
+		return new PaisDao();
+	}
+
 }
