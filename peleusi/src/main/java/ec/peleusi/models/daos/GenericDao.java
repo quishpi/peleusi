@@ -53,13 +53,18 @@ public abstract class GenericDao<T, ID extends Serializable> {
 		return entity;
 	}
 
-	public void update(T entity) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+	@SuppressWarnings("finally")
+	public boolean update(T entity) {
+		boolean exito = true;
+		Session session = null;
 		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			session.update(entity);
 			session.getTransaction().commit();
+			exito = true;
 		} catch (HibernateException e) {
+			exito = false;
 			if (session.getTransaction() != null)
 				session.getTransaction().rollback();
 			e.printStackTrace();
@@ -67,6 +72,7 @@ public abstract class GenericDao<T, ID extends Serializable> {
 			if (session != null && session.isOpen()) {
 				session.close();
 			}
+			return exito;
 		}
 	}
 
