@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "categoriaproducto")
+@Table(name = "pais")
 public class Pais {
 
 	public Pais() {
@@ -19,8 +19,8 @@ public class Pais {
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 
-	@Column(name = "siglas", nullable = false, length = 5)
-	private String siglas;
+	@Column(name = "codigo", nullable = false, length = 5)
+	private String codigo;
 
 	@Column(name = "nombre", nullable = false, length = 50)
 	private String nombre;
@@ -33,12 +33,12 @@ public class Pais {
 		this.id = id;
 	}
 
-	public String getSiglas() {
-		return siglas;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setSiglas(String siglas) {
-		this.siglas = siglas;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNombre() {
@@ -51,6 +51,6 @@ public class Pais {
 
 	@Override
 	public String toString() {
-		return "[id=" + id + ", siglas="+siglas+", nombre=" + nombre + "]";
+		return "[id=" + id + ", siglas="+codigo+", nombre=" + nombre + "]";
 	}
 }
